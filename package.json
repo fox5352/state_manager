@@ -1,6 +1,6 @@
 {
-  "name": "state_manager",
-  "version": "0.0.1",
+  "name": "fox_state_manager",
+  "version": "1.0.0",
   "description": "A basic state manager, nothing special",
   "main": "index.js",
   "type": "module",
