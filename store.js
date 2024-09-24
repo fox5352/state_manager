@@ -31,6 +31,7 @@
 export const createStore = (initialState, reducer) => {
   const state = [initialState]; // Changed to array with single initial state
   const subscribers = [];
+  let localReducer = reducer; 
 
   /**
    * Dispatch sends an event and updates the state
@@ -45,7 +46,7 @@ export const createStore = (initialState, reducer) => {
   // updates the state of the store using the supplied action and reducer callback
   const update = (action) => {
     const prev = Object.freeze({ ...state[0] }); // insuring users cant manipulate the state
-    const next = Object.freeze({ ...reducer(prev, action) });
+    const next = Object.freeze({ ...localReducer(prev, action) });
     state.unshift(next);
 
     if (state.length > 3) {
@@ -74,8 +75,18 @@ export const createStore = (initialState, reducer) => {
     return state[0];
   };
 
-  //TODO: Implement a undo function
   //TODO: Implement a replace reducer function for hot reloading functionally
+  /**
+   * hot reloads the reducer function
+   * @param {Reducer} reducer
+   * @returns {void}
+   */
+  const replaceReducer = (reducer) => {
+    localReducer = reducer;
+    dispatch({ type: "@@INIT" }); // trigger a state update with new reducer
+  };
+
+  //TODO: Implement a undo function
 
   dispatch({ type: "@@INIT" }); // set up initial state on subscriber's callback
 
@@ -83,5 +94,8 @@ export const createStore = (initialState, reducer) => {
     dispatch,
     subscribe,
     getState,
+    // amenities
+    replaceReducer,
+    // undo, // undo feature is not implemented yet
   };
 };
