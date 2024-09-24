@@ -1,0 +1,30 @@
+{
+  "name": "state_manager",
+  "version": "0.0.1",
+  "description": "A basic state manager, nothing special",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fox5352/state_manager.git"
+  },
+  "keywords": [
+    "state"
+  ],
+  "author": "Christopher Vos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fox5352/state_manager/issues"
+  },
+  "homepage": "https://github.com/fox5352/state_manager#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "eslint": "^9.11.1",
+    "globals": "^15.9.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3"
+  }
+}
