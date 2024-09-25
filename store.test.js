@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createStore } from "./store.js";
 import { reducer } from "./utils/testReducer.js";
 
@@ -42,4 +43,28 @@ describe('Testing store', () => {
         store.dispatch({type: "INCREMENT"}); // no more calls to the subscriber
         expect(count).toBe(3); // still 3 calls to the subscriber
     });
+
+    //TODO: add test for ho reloading reducer
+    test('test hot reloading reducer', () => {
+        const newReducer = (state, action) => {
+            const {type, payload} = action
+
+            switch (type) {
+                case 'INCREMENT':
+                    return {...state, counter: state.counter + 2};
+                default:
+                    return state;
+            }
+        }
+
+        let prev = store.getState();
+        store.replaceReducer(newReducer);
+
+        store.dispatch({type: "INCREMENT"});
+        expect(store.getState().counter).toBe(prev.counter + 2);
+
+        store.replaceReducer(reducer);
+    });
 });
+
+/* eslint-enable */
