@@ -26,5 +26,8 @@
     "globals": "^15.9.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.3"
+  },
+  "dependencies": {
+    "fox_state_manager": "file:"
   }
 }
